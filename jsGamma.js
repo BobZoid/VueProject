@@ -1,8 +1,11 @@
 Vue.component('product', {
 
     template: `
+        <body v-bind:style="{ backgroundImage: 'url(' + image + ')'}">
+        <div class="circular" v-bind:style="{ backgroundImage: 'url(' + image + ')' }"></div>
 
       <div class="grid-container">
+      <div class="top"> {{ titel }} </div>
       <div class="leftTop">
         <add-recipe @addedRecipe="addNewRecipe"></add-recipe>
       </div>
@@ -10,7 +13,7 @@ Vue.component('product', {
 
       <div class="rightTop" id="transBack">
 
-        <h2>Shopping List</h2>
+        <h2>Shoppinglista</h2>
         <p v-if="wares.length === 0">Inga recept ännu</p>
 
         <ul>
@@ -27,13 +30,23 @@ Vue.component('product', {
 
 
       </div>
-      </div>
+      
+      <footer class="bottom" id="transBack">
+      <label for="userName">Användarnamn</label>
+      <input id="userName" v-model="userName">
+      <input type="button" id="baltha" @click="engageBaltha()" value="Engage Balthazar">
+
+</footer>
+      
+      </div> </body>
     `,
 
     data() {
 
         return {
-            wares: []
+            wares: [],
+            userName: "Martin",
+            image: "balth.JPG"
 
         }
 
@@ -41,6 +54,14 @@ Vue.component('product', {
     },
 
     methods: {
+
+        engageBaltha() {
+            if (this.image=="hamBack.jpg") {
+                this.image="balth.JPG";
+                return;
+            }
+            this.image="hamBack.jpg";
+        },
 
         addNewRecipe(need2buy) {
             this.wares.push(need2buy)
@@ -58,19 +79,10 @@ Vue.component('product', {
         }
 
     },
-
     computed: {
-        title() {
-            if (this.username) {
-                return this.username + " " + this.game + " " + this.product;
-            } else {
-                return this.game + " " + this.product;
-            }
-
-        },
-        image() {
-            return this.sunBroSwoleGod[this.selectedVariant].variantImage
-        },
+        titel() {
+            return this.userName + "s Shoppinglista"
+        }
     }
 })
 
@@ -80,27 +92,27 @@ Vue.component('addRecipe', {
     template: `
       <form @submit.prevent="onSubmit">
       <p>
-        <label for="name">Recipe:</label>
-        <input id="name" v-model="name">
+        <label for="name" >Recept:</label>
+        <input id="name" v-model="name" required>
       </p>
       <p>
-        <label for="ing1">Ingredients needed:</label>
-        <input id="ing1" v-model="ing1">
+        <label for="ing1">Att Köpa:</label>
+        <input id="ing1" v-model="ing1" required>
       </p>
       <p>
-        <label for="ing2">Ingredients needed:</label>
+        <label for="ing2">Att Köpa:</label>
         <input id="ing2" v-model="ing2">
       </p>
       <p>
-        <label for="ing3">Ingredients needed:</label>
+        <label for="ing3">Att Köpa:</label>
         <input id="ing3" v-model="ing3">
       </p>
       <p>
-        <label for="ing4">Ingredients needed:</label>
+        <label for="ing4">Att Köpa:</label>
         <input id="ing4" v-model="ing4">
       </p>
       <p>
-        <label for="ing5">Ingredients needed:</label>
+        <label for="ing5">Att Köpa:</label>
         <input id="ing5" v-model="ing5">
       </p>
       <p>
@@ -148,7 +160,7 @@ Vue.component('deleteRecipe', {
     template: `
     <form @submit.prevent="deleteRecipe">
       <p>
-        <label for="toDelete">Recipe to delete:</label>
+        <label for="toDelete">Recept att radera:</label>
         <input id="toDelete" v-model="toDelete">
       </p>
       <p>

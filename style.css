@@ -2,11 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
 
 
-iframe{
-    width: 800px;
-    height: 400px;
-}
-
 #transBack {
     width: auto;
     border: 2px solid black;
@@ -17,10 +12,6 @@ iframe{
 
 }
 
-.wrapper{
-    margin-right: 12%;
-    margin-left: 0;
-}
 
 textarea{
     display: block;
@@ -185,10 +176,6 @@ a:hover {
     color: crimson;
 }
 
-.bild{
-    max-width: 500px;
-    height: auto;
-}
 
 a:active {
     color: coral;
